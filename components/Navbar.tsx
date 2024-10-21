@@ -5,7 +5,7 @@ import React from "react";
 const TopNavbar = () => {
   return (
     <div className="flex items-center justify-between p-4 sticky top-0 bg-gradient-to-r from-red-400 via-white to-blue-500  gap-10 h-10">
-      <div className="">
+      <div className="hidden md:flex">
         <Link href="/">
           <Image src="/logo/npp-4.png" alt="logo" width={50} height={50} />
         </Link>
