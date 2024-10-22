@@ -5,6 +5,7 @@ import Countdown from "@/components/Countdown";
 import Mission from "@/components/Mission";
 import SlidingText from "@/components/NewsSlider";
 import Personalities from "@/components/Personalities";
+import Project from "@/components/Project";
 import Together from "@/components/Together";
 import Image from "next/image";
 
@@ -33,6 +34,9 @@ export default function Home() {
         <Campaigns />
         <Mission />
       </section>
+
+      {/* Projects */}
+      <Project />
 
       {/* Section for News and Updates */}
       <section className=" mt-10">
