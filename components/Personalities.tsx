@@ -38,12 +38,12 @@ export default function Personalities() {
     autoplaySpeed: 3000,
   };
   return (
-    <div className="relative z-10 w-full">
+    <div className="relative z-10">
       <Slider {...settings}>
         {personalities.map((person, i) => (
           <div
             key={i}
-            className="w-full min-h-96 bg-gray-200 flex items-center justify-center"
+            className="w-full min-h-96 flex items-center justify-center"
           >
             <div className="text-center mt-10 space-y-1">
               <div className="space-y-5">
@@ -56,7 +56,7 @@ export default function Personalities() {
                   alt={person.name}
                   width={1000}
                   height={1000}
-                  className="w-[25rem] h-[24rem] lg:w-[30rem] lg:h-[30rem] rounded-full mx-auto"
+                  className="w-[30rem] h-[30rem] lg:w-[30rem] lg:h-[30rem]  mx-auto"
                 />
               </div>
             </div>
