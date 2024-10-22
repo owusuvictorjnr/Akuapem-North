@@ -1,12 +1,18 @@
-export default function FrontendLayout({
+"use client";
+
+import Footer from "@/components/Footer";
+import TopNavbar from "@/components/TopNavbar";
+
+export default function FrontLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <div className="">
-      <div className="">home</div>
-      {children};
+      <TopNavbar />
+      <main>{children}</main>
+      <Footer />
     </div>
   );
 }
