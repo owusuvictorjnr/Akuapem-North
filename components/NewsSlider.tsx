@@ -1,28 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import React from "react";
 
-type NewsItem = {
-  title: string;
-  content: string;
-  // Add more properties if needed
-};
-
-export default function NewsSlider({ news }: { news: NewsItem[] }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % news.length);
-  const prevSlide = () =>
-    setCurrentIndex((prev) => (prev - 1 + news.length) % news.length);
-
+const SlidingText = () => {
   return (
-    <div>
-      <button onClick={prevSlide}>Previous</button>
-      <div>
-        <h3>{news[currentIndex].title}</h3>
-        <p>{news[currentIndex].content}</p>
+    <div className="slider-container bg-black/10 mb-10  min-h-[15vh] overflow-hidden">
+      <div className="slider-content space-x-10 capitalize font-semibold flex justify-center mt-10 text-3xl items-center">
+        <div className="slider-text flex space-x-10 gap-28">
+          100% secure payment
+        </div>
+        <div className="slider-text flex  gap-28">Free worldwide shipping</div>
+        <div className="slider-text flex  gap-28">24/7 customer support</div>
+        <div className="slider-text flex  gap-28">Satisfaction guaranteed</div>
       </div>
-      <button onClick={nextSlide}>Next</button>
     </div>
   );
-}
+};
+
+export default SlidingText;
+
+// fredy blay npp
