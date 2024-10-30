@@ -1,10 +1,10 @@
-import { connectDB } from "@/lib/mongodb";
-import { Volunteer } from "@/model/volunteer";
+import dbConnect from "@/lib/mongodb";
+import { Volunteer } from "@/model/Volunteer";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    await connectDB();
+    await dbConnect;
 
     const data = await req.json();
 
