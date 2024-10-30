@@ -2,7 +2,9 @@
 
 import Campaigns from "@/components/Campaign";
 import Countdown from "@/components/Countdown";
+import DonationForm from "@/components/DonationForm";
 import Mission from "@/components/Mission";
+import News from "@/components/News";
 import SlidingText from "@/components/NewsSlider";
 import Personalities from "@/components/Personalities";
 import Project from "@/components/Project";
@@ -23,7 +25,7 @@ export default function Home() {
           />
         </div>
         {/* Personalities Carousel */}
-        <div className="z-10 w-full">
+        <div className="z-10 w-[90vh]">
           <Personalities />
         </div>
       </section>
@@ -36,7 +38,19 @@ export default function Home() {
       </section>
 
       {/* Projects */}
-      <Project />
+      <section>
+        <Project />
+      </section>
+
+      {/* Donation */}
+      <section>
+        <DonationForm />
+      </section>
+
+      {/* News */}
+      <section>
+        <News />
+      </section>
 
       {/* Section for News and Updates */}
       <section className=" mt-10">
