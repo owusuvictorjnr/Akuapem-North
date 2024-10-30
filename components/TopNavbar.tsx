@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { AiOutlineMenu } from 'react-icons/ai';
-import SideNavbar from './Sidebar';
+import React, { useState } from "react";
+import Link from "next/link";
+import { AiOutlineMenu } from "react-icons/ai";
+import SideNavbar from "./Sidebar";
 
 export default function TopNavbar() {
   const [sideNavOpen, setSideNavOpen] = useState(false);
@@ -18,11 +18,29 @@ export default function TopNavbar() {
         </div>
 
         <div className="hidden md:flex space-x-8">
-          <Link href="/" className="hover:underline">Home</Link>
-          <Link href="/news" className="hover:underline">News</Link>
-          <Link href="/volunteer" className="hover:underline">Volunteer</Link>
-          <Link href="/donation" className="hover:underline">Donation</Link>
-          <Link href="/about" className="hover:underline">About</Link>
+          <Link href="/" className="hover:underline">
+            Home
+          </Link>
+
+          <Link href="/about" className="hover:underline">
+            About
+          </Link>
+
+          <Link href="/news" className="hover:underline">
+            News & Events
+          </Link>
+
+          <Link href="/volunteer" className="hover:underline">
+            Volunteer
+          </Link>
+
+          <Link href="/projects" className="hover:underline">
+            projects
+          </Link>
+
+          <Link href="/contact" className="hover:underline">
+            Contact us
+          </Link>
         </div>
 
         {/* Mobile Menu Icon */}
