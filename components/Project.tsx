@@ -4,42 +4,42 @@ import React from "react";
 
 const ProjImage = [
   {
-    name: "Water Supply Initiative in Akropong",
+    description: "Water Supply Initiative in Akropong",
     image: "/proj/proj-8.jpg",
   },
 
   {
-    name: "Road Construction in Abiriw",
+    description: "Road Construction in Abiriw",
     image: "/proj/proj-1.jpg",
   },
 
   {
-    name: "Education Initiative in Larteh",
+    description: "Education Initiative in Larteh",
     image: "/proj/proj-2.jpg",
   },
 
   {
-    name: "Agricultural Initiative in Adukrom",
+    description: "Agricultural Initiative in Adukrom",
     image: "/proj/proj-3.jpg",
   },
 
   {
-    name: "Youth Empowerment in Mamfe",
+    description: "Youth Empowerment in Mamfe",
     image: "/proj/proj-4.jpg",
   },
 
   {
-    name: "Water Supply Initiative in Akropong",
+    description: "Water Supply Initiative in Akropong",
     image: "/proj/proj-5.png",
   },
 
   {
-    name: "Healthcare Initiative in Amanokrom",
+    description: "Healthcare Initiative in Amanokrom",
     image: "/proj/proj-6.jpg",
   },
 
   {
-    name: "Road Construction in Abiriw",
+    description: "Road Construction in Abiriw",
     image: "/proj/proj-7.jpg",
   },
 ];
@@ -60,23 +60,26 @@ const Project = () => {
               <Link href="/projects">
                 <Image
                   src={project.image}
-                  alt={project.name}
+                  alt={project.description}
                   height={500}
                   width={500}
                   className="h-52 w-full"
                 />
                 <div className="flex justify-center items-center mt-5 pb-5">
-                  <h2 className="py-2">{project.name}</h2>
+                  <h2 className="py-2">{project.description}</h2>
                 </div>
               </Link>
             </div>
           </div>
         ))}
       </div>
-      <div className="flex justify-center items-center">
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
-          View More
-        </button>
+      <div className="flex flex-col justify-center mx-auto items-center bg-rose-400 w-1/2  rounded-md text-center py-2 lg:w-1/4 hover:bg-blue-500">
+        <Link
+          href="/projects"
+          className="text-white font-semibold text-xl capitalize"
+        >
+          view more
+        </Link>
       </div>
     </div>
   );
