@@ -29,8 +29,13 @@ export default function SideNavbar({ isOpen, onClose }: SideNavbarProps) {
             </Link>
           </li>
           <li>
+            <Link href="/about" onClick={onClose}>
+              About
+            </Link>
+          </li>
+          <li>
             <Link href="/news" onClick={onClose}>
-              News
+              News & Events
             </Link>
           </li>
           <li>
@@ -39,19 +44,13 @@ export default function SideNavbar({ isOpen, onClose }: SideNavbarProps) {
             </Link>
           </li>
           <li>
-            <Link href="/donation" onClick={onClose}>
-              Donation
-            </Link>
-          </li>
-          <li>
-            <Link href="/about" onClick={onClose}>
-              About
-            </Link>
-          </li>
-
-          <li>
             <Link href="/projects" onClick={onClose}>
               projects
+            </Link>
+          </li>
+          <li>
+            <Link href="/contact" onClick={onClose}>
+              Contact us
             </Link>
           </li>
         </ul>
