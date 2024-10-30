@@ -6,27 +6,27 @@ import "slick-carousel/slick/slick-theme.css";
 import React from "react";
 import Image from "next/image";
 
+const personalities = [
+  {
+    name: "Dr. Alhaji Bawumia",
+    position: "Aspiring President of Ghana",
+    image: "/img/bawu.png",
+  },
+
+  {
+    name: "Sammi Awuku",
+    position: "Aspiring MP for Akuapem North",
+    image: "/img/awuku.png",
+  },
+
+  {
+    name: "Omane Boamah",
+    position: "Constuency Chairman for Akuapem North",
+    image: "/img/perf.png",
+  },
+];
+
 export default function Personalities() {
-  const personalities = [
-    {
-      name: "Dr. Alhaji Bawumia",
-      position: "Aspiring President of Ghana",
-      image: "/img/bawu.png",
-    },
-
-    {
-      name: "Sammi Awuku",
-      position: "Aspiring MP for Akuapem North",
-      image: "/img/awuku.png",
-    },
-
-    {
-      name: "Omane Boamah",
-      position: "Constuency Chairman for Akuapem North",
-      image: "/img/perf.png",
-    },
-  ];
-
   // Slick carousel settings
   const settings = {
     dots: true,
@@ -43,9 +43,9 @@ export default function Personalities() {
         {personalities.map((person, i) => (
           <div
             key={i}
-            className="w-full min-h-96 flex items-center justify-center"
+            className=" min-h-96 flex items-center justify-center"
           >
-            <div className="text-center mt-10 space-y-1">
+            <div className="text-center mt- space-y-1">
               <div className="space-y-5">
                 <h3 className="text-xl font-bold">{person.name}</h3>
                 <p className="text-lg">{person.position}</p>
