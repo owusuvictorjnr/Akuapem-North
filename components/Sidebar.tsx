@@ -34,7 +34,7 @@ export default function SideNavbar({ isOpen, onClose }: SideNavbarProps) {
             </Link>
           </li>
           <li>
-            <Link href="/news" onClick={onClose}>
+            <Link href="/news/and/events" onClick={onClose}>
               News & Events
             </Link>
           </li>
