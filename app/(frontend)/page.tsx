@@ -25,7 +25,7 @@ export default function Home() {
           />
         </div>
         {/* Personalities Carousel */}
-        <div className="z-10 w-[90vh]">
+        <div className="z-10 w-full">
           <Personalities />
         </div>
       </section>
