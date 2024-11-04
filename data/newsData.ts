@@ -24,4 +24,13 @@ export const newsData = [
     date: "2024-10-10",
     imageUrl: "/img/camp-1.jpg",
   },
+
+  {
+    id: 4,
+    title: "Education Fundraiser for Youth Development",
+    description:
+      "Join us in raising funds for the constituency's youth educational development.",
+    date: "2024-10-10",
+    imageUrl: "/img/camp-1.jpg",
+  },
 ];
