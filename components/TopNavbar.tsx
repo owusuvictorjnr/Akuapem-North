@@ -5,9 +5,14 @@ import SideNavbar from "./Sidebar";
 
 export default function TopNavbar() {
   const [sideNavOpen, setSideNavOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleSideNav = () => {
     setSideNavOpen(!sideNavOpen);
+  };
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
   };
 
   return (
@@ -22,24 +27,43 @@ export default function TopNavbar() {
             Home
           </Link>
 
-          <Link href="/about" className="hover:underline">
-            About
-          </Link>
+          {/* About Us with Dropdown */}
+          <div className="relative">
+            <button
+              onClick={toggleDropdown}
+              className="hover:underline focus:outline-none"
+            >
+              About Us
+            </button>
+            {dropdownOpen && (
+              <div className="absolute mt-2 bg-white text-blue-800 shadow-lg rounded-lg w-48">
+                <Link
+                  href="/about/mission-vision"
+                  className="block px-4 py-2 hover:bg-blue-100"
+                >
+                  Mission & Vision
+                </Link>
+                <Link
+                  href="/about/members"
+                  className="block px-4 py-2 hover:bg-blue-100"
+                >
+                  Members
+                </Link>
+              </div>
+            )}
+          </div>
 
           <Link href="/news" className="hover:underline">
             News & Events
           </Link>
-
           <Link href="/volunteer" className="hover:underline">
             Volunteer
           </Link>
-
           <Link href="/projects" className="hover:underline">
-            projects
+            Projects
           </Link>
-
           <Link href="/contact" className="hover:underline">
-            Contact us
+            Contact Us
           </Link>
         </div>
 
