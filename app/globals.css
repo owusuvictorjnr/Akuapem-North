@@ -30,7 +30,7 @@
   display: flex;
   gap: 3rem;
   white-space: nowrap;
-  animation: slideRightToLeft 60s linear infinite;
+  animation: slideRightToLeft 30s linear infinite;
 }
 
 .slider-text {
