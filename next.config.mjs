@@ -1,8 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  cache: {
-    type: "filesystem",
-  },
-};
+const nextConfig = {};
 
 export default nextConfig;
