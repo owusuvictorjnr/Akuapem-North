@@ -54,7 +54,7 @@ const Project = () => {
         {ProjImage.map((project, i) => (
           <div
             key={i}
-            className="bg-gray-200 rounded w-[50vh] md:w-full shadow-md mx-auto cursor-pointer lg:hover:scale-95 duration-100 h-full lg:w-full"
+            className="bg-gray-200 rounded w-full md:w-full shadow-md mx-auto cursor-pointer lg:hover:scale-95 duration-100 h-full lg:w-full"
           >
             <div className="text-center">
               <Link href="/projects">
