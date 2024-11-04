@@ -43,7 +43,7 @@ export default function MissionVision() {
           services that enhance the well-being of every individual in the
           community. We aim to foster transparency, accountability, and
           inclusivity in our governance and community engagements, ensuring that
-          every citizen's voice and contribution are valued in building a
+          every citizen&#39;s voice and contribution are valued in building a
           stronger Akuapem North.
         </p>
       </section>
