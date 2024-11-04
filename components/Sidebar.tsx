@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { AiOutlineClose } from "react-icons/ai";
 
@@ -8,6 +8,12 @@ interface SideNavbarProps {
 }
 
 export default function SideNavbar({ isOpen, onClose }: SideNavbarProps) {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
   return (
     <div
       className={`fixed top-0 left-0 w-64 h-full bg-blue-700 text-white transform ${
@@ -28,11 +34,38 @@ export default function SideNavbar({ isOpen, onClose }: SideNavbarProps) {
               Home
             </Link>
           </li>
-          <li>
-            <Link href="/about" onClick={onClose}>
-              About
-            </Link>
-          </li>
+          <div className="relative">
+            <button
+              onClick={toggleDropdown}
+              className="hover:underline focus:outline-none"
+            >
+              About Us
+            </button>
+            {dropdownOpen && (
+              <div className="absolute mt-2 bg-white text-blue-800 shadow-lg rounded-lg w-48">
+                <Link
+                  href="/about/mission-vision"
+                  onClick={() => {
+                    toggleDropdown();
+                    onClose();
+                  }}
+                  className="block px-4 py-2 hover:bg-blue-100"
+                >
+                  Mission & Vision
+                </Link>
+                <Link
+                  href="/about/members"
+                  onClick={() => {
+                    toggleDropdown();
+                    onClose();
+                  }}
+                  className="block px-4 py-2 hover:bg-blue-100"
+                >
+                  Members
+                </Link>
+              </div>
+            )}
+          </div>
           <li>
             <Link href="/news/and/events" onClick={onClose}>
               News & Events
@@ -45,12 +78,12 @@ export default function SideNavbar({ isOpen, onClose }: SideNavbarProps) {
           </li>
           <li>
             <Link href="/projects" onClick={onClose}>
-              projects
+              Projects
             </Link>
           </li>
           <li>
             <Link href="/contact" onClick={onClose}>
-              Contact us
+              Contact Us
             </Link>
           </li>
         </ul>
