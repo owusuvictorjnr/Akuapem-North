@@ -1,7 +1,7 @@
 import { newsData } from "@/data/newsData";
 
 export default function News() {
-  const recentNews = newsData.slice(0, 3); // Show only a few items on the home page
+  const recentNews = newsData.slice(0, 4); // Show only a few items on the home page
 
   return (
     <div>
