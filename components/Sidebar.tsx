@@ -82,7 +82,7 @@ export default function SideNavbar({ isOpen, onClose }: SideNavbarProps) {
             </Link>
           </li>
           <li>
-            <Link href="/contact" onClick={onClose}>
+            <Link href="/contact-us" onClick={onClose}>
               Contact Us
             </Link>
           </li>

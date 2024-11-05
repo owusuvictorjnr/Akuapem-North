@@ -62,7 +62,7 @@ export default function TopNavbar() {
           <Link href="/projects" className="hover:underline">
             Projects
           </Link>
-          <Link href="/contact" className="hover:underline">
+          <Link href="/contact-us" className="hover:underline">
             Contact Us
           </Link>
         </div>
