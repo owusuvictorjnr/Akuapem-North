@@ -53,7 +53,7 @@ export default function TopNavbar() {
             )}
           </div>
 
-          <Link href="/news" className="hover:underline">
+          <Link href="/news-and/events" className="hover:underline">
             News & Events
           </Link>
           <Link href="/volunteer" className="hover:underline">
