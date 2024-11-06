@@ -31,7 +31,7 @@ const Volunteers = () => {
         Volunteer with Us
       </h1>
 
-      <p className="text-lg mb-4 text-[#565358] max-w-2xl text-center">
+      <p className="text-sm md:text-lg mb-4 text-[#565358] max-w-2xl text-center">
         Join our team to make a positive impact in Akuapem North Constituency.
         Volunteers are at the heart of everything we do, from organizing events
         to community outreach. Get involved and help us drive positive change.
@@ -39,10 +39,10 @@ const Volunteers = () => {
 
       {/* Volunteer Benefits */}
       <div className="mb-8 max-w-2xl">
-        <h2 className="text-2xl font-semibold text-blue-700 mb-4">
+        <h2 className="text-lg text-center md:text-2xl font-semibold text-blue-700 mb-4">
           Why Volunteer?
         </h2>
-        <ul className="list-disc list-inside text-[#565358] space-y-2">
+        <ul className="text-sm md:text-lg list-disc list-inside text-[#565358] space-y-2">
           <li>Gain valuable experience and skills</li>
           <li>Meet and connect with like-minded people</li>
           <li>Make a difference in your community</li>
@@ -51,10 +51,10 @@ const Volunteers = () => {
 
       {/* Volunteer Opportunities */}
       <div className="mb-8 max-w-2xl">
-        <h2 className="text-2xl font-semibold text-blue-700 mb-4">
+        <h2 className="text-lg text-center md:text-2xl font-semibold text-blue-700 mb-4">
           Volunteer Opportunities
         </h2>
-        <ul className="list-disc list-inside text-[#565358] space-y-2">
+        <ul className="text-sm md:text-lg list-disc list-inside text-[#565358] space-y-2">
           <li>Event Planning and Management</li>
           <li>Community Outreach and Support</li>
           <li>Fundraising and Campaigning</li>
