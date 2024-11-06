@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +8,12 @@ const ContactUs = () => {
     email: "",
     message: "",
   });
+
+  const [mapLoaded, setMapLoaded] = useState(false);
+
+  useEffect(() => {
+    setMapLoaded(true);
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -126,15 +132,17 @@ const ContactUs = () => {
 
           {/* Google Map */}
           <div className="w-full lg:w-1/2 h-80 mt-8 lg:mt-0">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31745.123011561205!2d-0.10896954462738241!3d5.975399529892303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf6419dbb8c1cf%3A0xc7b3fdf3f3e6cbb!2sAkropong%2C%20Ghana!5e0!3m2!1sen!2sus!4v1730820953893!5m2!1sen!2sus"
-              width="100%"
-              height="100%"
-              allowFullScreen={true}
-              loading="lazy"
-              style={{ border: 0 }}
-              className="rounded-lg shadow-lg"
-            ></iframe>
+            {mapLoaded && (
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31745.123011561205!2d-0.10896954462738241!3d5.975399529892303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf6419dbb8c1cf%3A0xc7b3fdf3f3e6cbb!2sAkropong%2C%20Ghana!5e0!3m2!1sen!2sus!4v1730820953893!5m2!1sen!2sus"
+                width="100%"
+                height="100%"
+                allowFullScreen={true}
+                loading="lazy"
+                style={{ border: 0 }}
+                className="rounded-lg shadow-lg"
+              />
+            )}
           </div>
         </div>
       </div>
