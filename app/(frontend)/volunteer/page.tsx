@@ -31,7 +31,7 @@ const Volunteers = () => {
         Volunteer with Us
       </h1>
 
-      <p className="text-sm md:text-lg mb-4 text-[#565358] max-w-2xl text-center">
+      <p className="text-sm md:text-lg mb-4 text-justify px-5 text-[#565358] max-w-2xl">
         Join our team to make a positive impact in Akuapem North Constituency.
         Volunteers are at the heart of everything we do, from organizing events
         to community outreach. Get involved and help us drive positive change.
