@@ -14,15 +14,18 @@ const Mission = () => {
       <h1 className="capitalize font-bold text-blue-700 text-3xl">
         our mission
       </h1>
-      <div className="">
-        <p className="text-justify mx-auto line-clamp-2 container text-[#565358] lg:px-[20rem]">
+      <div className="flex flex-col">
+        <p className="text-justify px-5 mx-auto line-clamp-2 container text-[#565358] lg:px-[20rem]">
           To achieve this vision, we are dedicated to implementing strategic
           programs and initiatives that address the unique needs of Akuapem
           North. Our mission is to empower the youth through quality education,
           support local businesses for economic growth, and provide essential
           services that enhance the well-being of every individual in
         </p>
-        <Link href="/about/mission-vision" className="text-blue-700 hover:text-red-500">
+        <Link
+          href="/about/mission-vision"
+          className="text-blue-700 px-3 hover:text-red-500"
+        >
           read more
         </Link>
       </div>

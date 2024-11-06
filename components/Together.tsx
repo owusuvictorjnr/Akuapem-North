@@ -19,7 +19,7 @@ const Together = () => {
             together we are stronger
           </h1>
 
-          <p className="text-justify text-[#565358] container mx-auto lg:px-[20rem]">
+          <p className="text-justify px-5 text-[#565358] container mx-auto lg:px-[20rem]">
             In unity, we find strength that no single individual can achieve
             alone. As a community, we stand resilient, embracing our diversity
             and shared aspirations. Every voice matters, every hand builds, and

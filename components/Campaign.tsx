@@ -17,7 +17,7 @@ const Campaigns = () => {
 
         {/* <p className="font-semibold text-xl text-blue-400">Empowering Communities, Building the Future</p> */}
       </div>
-      <p className="text-justify mx-auto container text-[#565358] lg:px-[20rem]">
+      <p className="text-justify px-5 mx-auto container text-[#565358] lg:px-[20rem]">
         Through transparent leadership, we aim to promote development in
         education, healthcare, infrastructure, and economic empowerment.
         Together, we will ensure that no one is left behind in our pursuit of
