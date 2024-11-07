@@ -14,7 +14,9 @@ const MembersPage = () => {
 
       {/* Reg. Executives */}
       <div className="">
-        <h2 className="text-xl font-semibold">Regional Executives</h2>
+        <h2 className="text-xl font-semibold text-blue-400">
+          Regional Executives
+        </h2>
       </div>
       <div className="grid mt-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {regMembersData.map((regmember, index) => (
@@ -29,15 +31,19 @@ const MembersPage = () => {
               height={150}
               className=" mb-4"
             />
-            <h2 className="text-xl font-semibold">{regmember.name}</h2>
-            <p className="text-gray-700">{regmember.position}</p>
+            <h2 className="text-xl font-semibold text-[#565358]">
+              {regmember.name}
+            </h2>
+            <p className="text-[#565358]">{regmember.position}</p>
           </div>
         ))}
       </div>
 
       {/* Const. Executives */}
       <div className="mt-36">
-        <h2 className="text-xl font-semibold">Constituency Executives</h2>
+        <h2 className="text-xl font-semibold text-blue-400">
+          Constituency Executives
+        </h2>
       </div>
       <div className="grid mt-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {ConstMembersData.map((constmember, index) => (
@@ -52,8 +58,10 @@ const MembersPage = () => {
               height={150}
               className="mb-4"
             />
-            <h2 className="text-xl font-semibold">{constmember.name}</h2>
-            <p className="text-gray-700">{constmember.position}</p>
+            <h2 className="text-xl font-semibold text-[#565358]">
+              {constmember.name}
+            </h2>
+            <p className="text-[#565358]">{constmember.position}</p>
           </div>
         ))}
       </div>
