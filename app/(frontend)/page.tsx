@@ -33,7 +33,13 @@ export default function Home() {
       {/* Section for Together */}
       <section>
         <Together />
+      </section>
+
+      <section>
         <Campaigns />
+      </section>
+
+      <section>
         <Mission />
       </section>
 
