@@ -5,7 +5,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Image from "next/image";
-import type { PaymentIntent, PaymentIntentResult } from "@stripe/stripe-js";
+import type { PaymentIntentResult } from "@stripe/stripe-js";
 
 export default function DonationForm() {
   const stripe = useStripe();
@@ -14,24 +14,6 @@ export default function DonationForm() {
   const [paymentMethod, setPaymentMethod] = useState<string>("card");
   const [mobileNumber, setMobileNumber] = useState<string>("");
   const [networkProvider, setNetworkProvider] = useState<string>("");
-
-  const CARD_ELEMENT_OPTIONS = {
-    style: {
-      base: {
-        color: "#32325d",
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSmoothing: "antialiased",
-        fontSize: "16px",
-        "::placeholder": {
-          color: "#aab7c4",
-        },
-      },
-      invalid: {
-        color: "#fa755a",
-        iconColor: "#fa755a",
-      },
-    },
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,8 +29,11 @@ export default function DonationForm() {
     }
 
     try {
-      const res = await axios.post("/api/donate", { amount, paymentMethod });
-      const { clientSecret } = res.data;
+      const { data } = await axios.post("/api/donate", {
+        amount,
+        paymentMethod,
+      });
+      const { clientSecret } = data;
 
       if (paymentMethod === "card") {
         const cardElement = elements.getElement(CardElement);
@@ -56,26 +41,15 @@ export default function DonationForm() {
           throw new Error("Card element not found");
         }
 
-        const result: PaymentIntentResult = await stripe.confirmCardPayment(
-          clientSecret,
-          {
-            payment_method: {
-              card: cardElement,
-            },
-          }
-        );
+        const result = (await stripe.confirmCardPayment(clientSecret, {
+          payment_method: { card: cardElement },
+        })) as PaymentIntentResult;
 
-        if (
-          "paymentIntent" in result &&
-          (result.paymentIntent as PaymentIntent).status === "succeeded"
-        ) {
+        // Safely access `result.paymentIntent` with optional chaining
+        if (result.paymentIntent?.status === "succeeded") {
           toast.success("Card Payment successful");
         } else if (result.error) {
           toast.error(result.error.message || "Payment failed.");
-        } else if (result as PaymentIntentResult) {
-          toast.error(
-            (result as PaymentIntentResult).error?.message || "Payment failed."
-          );
         } else {
           toast.error("Unexpected payment result.");
         }
@@ -91,23 +65,17 @@ export default function DonationForm() {
           elements,
           confirmParams: {
             payment_method_data: {
-              billing_details: {
-                name: "MoMo User",
-                phone: mobileNumber,
-              },
+              billing_details: { name: "MoMo User", phone: mobileNumber },
             },
             return_url: window.location.href,
           },
           clientSecret,
         });
 
-        if (
-          "paymentIntent" in result &&
-          (result.paymentIntent as { status: string }).status === "succeeded"
-        ) {
-          toast.success("Mobile Money Payment successful");
-        } else if (result.error) {
+        if (result.error) {
           toast.error(result.error.message || "Mobile Money Payment failed.");
+        } else if (result.paymentIntent?.status === "succeeded") {
+          toast.success("Mobile Money Payment successful");
         } else {
           toast.error("Unexpected payment result.");
         }
@@ -121,11 +89,11 @@ export default function DonationForm() {
   return (
     <>
       <div className="mt-36">
-        <h1 className="text-2xl font-bold capitalize text-center">
+        <h1 className="md:text-3xl text-lg text-blue-700 font-bold capitalize text-center">
           Donate to support our cause
         </h1>
       </div>
-      <div className="relative w-full min-h-">
+      <div className="relative w-full mt-10">
         <Image
           src="/logo/npp-1.jpg"
           alt="Background Image"
@@ -136,12 +104,12 @@ export default function DonationForm() {
         <div className="space-y-10 relative z-10 bg-white bg-opacity-80 p-8 max-w-3xl mx-auto">
           <form
             onSubmit={handleSubmit}
-            className="space-y-5 flex flex-col justify-center items-center"
+            className="space-y-5 flex flex-col items-center"
           >
             <div className="flex flex-col space-y-3">
               <label
                 htmlFor="amount"
-                className="text-center font-semibold text-xl"
+                className="font-semibold text-blue-400 text-center md:text-xl"
               >
                 Amount
               </label>
@@ -153,13 +121,13 @@ export default function DonationForm() {
                 placeholder="Enter the amount"
                 min="1"
                 required
-                className="ring-1 ring-blue-500 outline-none rounded-md p-2"
+                className="ring-1 ring-blue-500 rounded-md p-2 outline-none"
               />
             </div>
             <div className="flex flex-col space-y-3">
               <label
                 htmlFor="payment-method"
-                className="text-center font-semibold text-xl"
+                className="font-semibold text-blue-400 text-center md:text-xl"
               >
                 Choose Payment Method
               </label>
@@ -168,28 +136,29 @@ export default function DonationForm() {
                 value={paymentMethod}
                 onChange={(e) => setPaymentMethod(e.target.value)}
                 required
-                className="ring-1 ring-blue-500 outline-none rounded-md p-2"
+                className="ring-1 ring-blue-500 rounded-md p-2 outline-none"
               >
                 <option value="card">Credit or Debit Card</option>
                 <option value="momo">Mobile Money</option>
               </select>
             </div>
             {paymentMethod === "card" && (
-              <div>
-                <label htmlFor="card-element">Credit or debit card</label>
+              <div className="w-full flex flex-col justify-center items-center space-y-5">
+                <label htmlFor="card-element" className="text-[#565358]">
+                  Credit or debit card
+                </label>
                 <CardElement
                   id="card-element"
-                  options={CARD_ELEMENT_OPTIONS}
-                  className="rounded-md border-2 w-full py-2 p-4 ring-blue-500"
+                  className="rounded-md border-2 w-1/2 py-2 p-4"
                 />
               </div>
             )}
             {paymentMethod === "momo" && (
-              <div className="flex flex-col space-y-3 justify-center items-center">
+              <div className="space-y-3">
                 <div className="flex flex-col space-y-3">
                   <label
                     htmlFor="mobile-number"
-                    className="text-center font-semibold text-xl"
+                    className="font-semibold text-blue-400 text-center md:text-xl"
                   >
                     Mobile Number
                   </label>
@@ -200,13 +169,13 @@ export default function DonationForm() {
                     onChange={(e) => setMobileNumber(e.target.value)}
                     placeholder="Enter your mobile number"
                     required
-                    className="ring-1 ring-blue-500 outline-none rounded-md p-2"
+                    className="ring-1 ring-blue-500 rounded-md p-2 outline-none"
                   />
                 </div>
-                <div className="flex flex-col space-y-3 justify-center items-center">
+                <div className="flex flex-col space-y-3">
                   <label
                     htmlFor="network-provider"
-                    className="text-center font-semibold text-xl"
+                    className="font-semibold text-blue-400 text-center md:text-xl"
                   >
                     Network Provider
                   </label>
@@ -215,7 +184,7 @@ export default function DonationForm() {
                     value={networkProvider}
                     onChange={(e) => setNetworkProvider(e.target.value)}
                     required
-                    className="ring-1 ring-blue-500 outline-none rounded-md p-2"
+                    className="ring-1 ring-blue-500 rounded-md p-2 outline-none"
                   >
                     <option value="">Select your network provider</option>
                     <option value="MTN">MTN</option>
@@ -225,14 +194,12 @@ export default function DonationForm() {
                 </div>
               </div>
             )}
-            <div className="bg-rose-400 w-1/2 lg:w- rounded-md text-center py-2 hover:bg-blue-500">
-              <button
-                type="submit"
-                className="text-white font-semibold text-xl"
-              >
-                Donate
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="bg-rose-400 w-1/2 text-white font-semibold py-2 rounded-md hover:bg-blue-500"
+            >
+              Donate
+            </button>
           </form>
         </div>
       </div>
