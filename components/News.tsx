@@ -12,7 +12,7 @@ export default function NewsPage() {
 
   return (
     <div className="mt-36 space-y-5">
-      <h1 className="text-center font-bold text-2xl">News and Events</h1>
+      <h1 className="text-center font-bold text-lg md:text-3xl text-blue-700">News and Events</h1>
       <div className="flex flex-col items-center px-10 gap-10 md:grid grid-cols-2 mx-auto md:grid-cols-2 lg:grid-cols-4">
         {news.map((item) => (
           <div
@@ -28,7 +28,7 @@ export default function NewsPage() {
                 className="w-full h-52"
               />
               <div className="flex justify-center items-center mt-5 pb-5">
-                <h2 className="py-2">{item.title}</h2>
+                <h2 className="py-2 text-[#565358]">{item.title}</h2>
                 {/* <p>{item.description}</p> */}
               </div>
             </div>

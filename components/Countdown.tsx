@@ -41,7 +41,7 @@ const Countdown = () => {
 
   return (
     <div className="text-center p-5 bg- text- rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Countdown to Election 2024</h2>
+      <h2 className="text-2xl font-bold mb-4 text-[#565358]">Countdown to Election 2024</h2>
       <div className="text-3xl font-bold flex justify-center text-[#F44336] space-x-5">
         <div>
           <p>{timeLeft.days}</p>

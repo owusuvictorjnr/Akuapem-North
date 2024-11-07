@@ -15,11 +15,11 @@ const Together = () => {
               className="bg-red-500 text-center rounded-full py-2 px-2 hover:bg-blue-950"
             />
           </div>
-          <h1 className="font-bold text-4xl te capitalize text-blue-700 text-center my-5">
+          <h1 className="font-bold text-lg md:text-3xl te capitalize text-blue-700 text-center my-5">
             together we are stronger
           </h1>
 
-          <p className="text-justify px-5 text-[#565358] container mx-auto lg:px-[20rem]">
+          <p className="text-justify px-5 text-sm md:text-lg text-[#565358] container mx-auto lg:px-[20rem]">
             In unity, we find strength that no single individual can achieve
             alone. As a community, we stand resilient, embracing our diversity
             and shared aspirations. Every voice matters, every hand builds, and
