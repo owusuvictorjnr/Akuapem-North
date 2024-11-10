@@ -1,98 +1,66 @@
+// /app/components/DonationForm.tsx
 "use client";
 
 import React, { useState } from "react";
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Image from "next/image";
-import type { PaymentIntentResult } from "@stripe/stripe-js";
 
 export default function DonationForm() {
-  const stripe = useStripe();
-  const elements = useElements();
   const [amount, setAmount] = useState<number>(0);
   const [paymentMethod, setPaymentMethod] = useState<string>("card");
   const [mobileNumber, setMobileNumber] = useState<string>("");
   const [networkProvider, setNetworkProvider] = useState<string>("");
+  const [isProcessing, setIsProcessing] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!stripe || !elements) {
-      toast.error("Stripe.js has not yet loaded. Please try again.");
-      return;
-    }
 
     if (amount <= 0) {
       toast.error("Please enter a valid amount.");
       return;
     }
 
+    // Check if mobile number is required and validate
+    if (paymentMethod === "momo" && !mobileNumber) {
+      toast.error("Please enter your mobile number.");
+      return;
+    }
+
+    if (paymentMethod === "momo" && !networkProvider) {
+      toast.error("Please select your network provider.");
+      return;
+    }
+
+    setIsProcessing(true);
+
     try {
-      const { data } = await axios.post("/api/donate", {
+      const { data } = await axios.post("/api/hubtel-payment", {
         amount,
         paymentMethod,
+        mobileNumber,
+        networkProvider,
       });
-      const { clientSecret } = data;
 
-      if (paymentMethod === "card") {
-        const cardElement = elements.getElement(CardElement);
-        if (!cardElement) {
-          throw new Error("Card element not found");
-        }
-
-        const result = (await stripe.confirmCardPayment(clientSecret, {
-          payment_method: { card: cardElement },
-        })) as PaymentIntentResult;
-
-        // Safely access `result.paymentIntent` with optional chaining
-        if (result.paymentIntent?.status === "succeeded") {
-          toast.success("Card Payment successful");
-        } else if (result.error) {
-          toast.error(result.error.message || "Payment failed.");
-        } else {
-          toast.error("Unexpected payment result.");
-        }
-      } else if (paymentMethod === "momo") {
-        if (!mobileNumber || !networkProvider) {
-          toast.error(
-            "Please enter your mobile number and select a network provider."
-          );
-          return;
-        }
-
-        const result = await stripe.confirmPayment({
-          elements,
-          confirmParams: {
-            payment_method_data: {
-              billing_details: { name: "MoMo User", phone: mobileNumber },
-            },
-            return_url: window.location.href,
-          },
-          clientSecret,
-        });
-
-        if (result.error) {
-          toast.error(result.error.message || "Mobile Money Payment failed.");
-        } else if (result.paymentIntent?.status === "succeeded") {
-          toast.success("Mobile Money Payment successful");
-        } else {
-          toast.error("Unexpected payment result.");
-        }
+      if (data.responseCode === "0000" && data.data.checkoutUrl) {
+        // Redirect the user to Hubtel's payment page
+        window.location.href = data.data.checkoutUrl;
+      } else {
+        toast.error("Payment initiation failed.");
       }
     } catch (error) {
       console.error("Error processing payment:", error);
       toast.error("Failed to process the donation. Please try again.");
+    } finally {
+      setIsProcessing(false);
     }
   };
 
   return (
-    <>
-      <div className="mt-36">
-        <h1 className="md:text-3xl text-lg text-blue-700 font-bold capitalize text-center">
-          Donate to support our cause
-        </h1>
-      </div>
+    <div className="mt-36">
+      <h1 className="md:text-3xl text-lg text-blue-700 font-bold capitalize text-center">
+        Donate to support our cause
+      </h1>
       <div className="relative w-full mt-10">
         <Image
           src="/logo/npp-1.jpg"
@@ -142,17 +110,6 @@ export default function DonationForm() {
                 <option value="momo">Mobile Money</option>
               </select>
             </div>
-            {paymentMethod === "card" && (
-              <div className="w-full flex flex-col justify-center items-center space-y-5">
-                <label htmlFor="card-element" className="text-[#565358]">
-                  Credit or debit card
-                </label>
-                <CardElement
-                  id="card-element"
-                  className="rounded-md border-2 w-1/2 py-2 p-4"
-                />
-              </div>
-            )}
             {paymentMethod === "momo" && (
               <div className="space-y-3">
                 <div className="flex flex-col space-y-3">
@@ -196,13 +153,16 @@ export default function DonationForm() {
             )}
             <button
               type="submit"
-              className="bg-rose-400 w-1/2 text-white font-semibold py-2 rounded-md hover:bg-blue-500"
+              disabled={isProcessing}
+              className={`${
+                isProcessing ? "bg-gray-400" : "bg-rose-400"
+              } w-1/2 text-white font-semibold py-2 rounded-md hover:bg-blue-500`}
             >
-              Donate
+              {isProcessing ? "Processing..." : "Donate"}
             </button>
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 }
